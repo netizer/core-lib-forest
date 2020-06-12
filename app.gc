@@ -1,0 +1,48 @@
+m:call runner.application
+  m:context
+    m:set meta
+      m:context
+        m:set name
+          data
+            core_lib
+    m:set dependencies
+      m:context
+        m:set integration
+          m:later
+            m:context
+              m:set groundcover
+                m:context
+                  m:set source
+                    data
+                      local
+                  m:set path
+                    data
+                      ../groundcover
+                  m:set directory_name
+                    data
+                      groundcover
+    m:set tasks
+      m:context
+        m:set install
+          m:later
+            m:context
+              m:set group
+                m:array_get 0
+                  m:get command_parts
+              m:set deps
+                m:call hash_get
+                  m:get group
+                  m:now dependencies
+              m:each deps
+                block
+                  block
+                    data
+                      dep
+                  m:call runner.resolve
+                    m:get dep
+        m:set help
+          m:later
+            m:context
+              m:call runner.print
+                data
+                  This is a help message for core-lib-forest
