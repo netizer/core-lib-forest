@@ -26,23 +26,32 @@ m:call runner.application
         m:set install
           m:later
             m:context
+              m:call runner.include_task_environment
+                block
               m:set group
-                m:array_get 0
-                  m:get command_parts
+                m:call data.array_get
+                  block
+                    data
+                      1
+                    m:get command_parts
+              m:set deps_function
+                m:call data.hash_get
+                  block
+                    m:get group
+                    m:get dependencies
               m:set deps
-                m:call hash_get
-                  m:get group
-                  m:now dependencies
-              m:each deps
+                m:now_by_name deps_function
+              m:each_by_name deps
                 block
                   block
                     data
                       dep
-                  m:call runner.resolve
+                  m:call runner.resolve_dependency
                     m:get dep
         m:set help
           m:later
             m:context
+              m:call runner.include_task_environment
               m:call runner.print
                 data
                   This is a help message for core-lib-forest
