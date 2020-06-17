@@ -41,13 +41,29 @@ m:call runner.application
                     m:get dependencies
               m:set deps
                 m:now_by_name deps_function
-              m:each_by_name deps
-                block
-                  block
-                    data
-                      dep
-                  m:call runner.resolve_dependency
-                    m:get dep
+              m:call loops.each_key_value_by_name
+                m:context
+                  m:set items
+                    m:get deps
+                  m:set function
+                    m:later
+                      m:context
+                        m:call runner.explode_args_selectively
+                          block
+                            block
+                              data
+                                key
+                              data
+                                dep_name
+                            block
+                              data
+                                value
+                              data
+                                dep_options
+                        m:call runner.resolve_dependency
+                          block
+                            m:get dep_name
+                            m:get dep_options
         m:set help
           m:later
             m:context
