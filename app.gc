@@ -64,10 +64,24 @@ m:call runner.application
                           block
                             m:get dep_name
                             m:get dep_options
+              m:call runner.print
+                data
+                  Dependencies installed.
         m:set help
           m:later
             m:context
               m:call runner.include_task_environment
+                block
               m:call runner.print
                 data
                   This is a help message for core-lib-forest
+        m:set test
+          m:later
+            m:context
+              m:call runner.include_task_environment
+                block
+              m:call runner.load_project_and_run_stages
+                m:context
+                  m:set_value macro
+                  m:set_value type_check
+                  m:set_value test
