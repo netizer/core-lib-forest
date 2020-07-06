@@ -4,23 +4,7 @@ m:call runner.application
       m:context
         m:set name
           data
-            core_lib
-    m:set dependencies
-      m:context
-        m:set integration
-          m:later
-            m:context
-              m:set groundcover
-                m:context
-                  m:set source
-                    data
-                      local
-                  m:set path
-                    data
-                      ../groundcover
-                  m:set directory_name
-                    data
-                      groundcover
+            core_lib_app
     m:set permissions
       m:context
         m:set test
@@ -56,6 +40,51 @@ m:call runner.application
               m:call cgs.set_value
                 data
                   cgs.get
+              m:call cgs.set_value
+                data
+                  cgs.set
+              m:call cgs.set_value
+                data
+                  runner.load_project_and_run_stages
+              m:call cgs.set_value
+                data
+                  cgs.module
+              m:call cgs.set_value
+                data
+                  runner.cascade
+              m:call cgs.set_value
+                data
+                  runnner.template_from_file
+              m:call cgs.set_value
+                data
+                  runner.run_from_file
+              m:call cgs.set_value
+                data
+                  runner.dot
+              m:call cgs.set_value
+                data
+                  testing.assert
+              m:call cgs.set_value
+                data
+                  testing.join
+              m:call cgs.set_value
+                data
+                  cgs.last
+              m:call cgs.set_value
+                data
+                  ln.now_with_args
+              m:call cgs.set_value
+                data
+                  ln.now
+              m:call cgs.set_value
+                data
+                  testing.log
+              m:call cgs.set_value
+                data
+                  testing.logs
+              m:call cgs.set_value
+                data
+                  runner.print_character
     m:set tasks
       m:context
         m:set install
@@ -108,8 +137,14 @@ m:call runner.application
               m:call runner.include_task_environment
                 block
               m:call runner.print
+                m:call data.hash_get
+                  block
+                    data
+                      name
+                    m:get meta
+              m:call runner.print
                 data
-                  This is a help message for core-lib-forest
+                  This is a help message
         m:set test
           m:later
             m:context
@@ -122,8 +157,6 @@ m:call runner.application
                       data
                         test
                       m:get permissions
-                  m:call runner.load_project_and_run_stages
-                    m:context
-                      m:set_value macro
-                      m:set_value type_check
-                      m:set_value test
+                  m:call runner.run_from_file
+                    data
+                      lib/main.gc

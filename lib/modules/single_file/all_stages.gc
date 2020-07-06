@@ -1,0 +1,8 @@
+m:call cascade
+  data
+    macro
+  m:context
+    m:set template
+      m:call pattern
+        block
+          m:context

@@ -1,0 +1,23 @@
+m:call cgs.module
+  m:context
+    m:set meta
+      m:context
+        m:set name
+          data
+            core_lib.cgs
+    m:set exports
+      m:call runner.cascade
+        block
+          data
+            test
+          m:call cascade
+            block
+              data
+                macro
+              m:context
+                m:call runnner.template_from_file
+                  data
+                    fixtures/cgs/get_uses_set_from_closer_context.forest
+                m:call runnner.template_from_file
+                  data
+                    fixtures/cgs/set_followed_by_get_same_context.forest

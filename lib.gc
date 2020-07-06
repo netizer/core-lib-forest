@@ -1,0 +1,23 @@
+m:call forest.library
+  m:context
+    m:set meta
+      m:context
+        m:set name
+          data
+            core_lib
+    m:set dependencies
+      m:context
+        m:set integration
+          m:later
+            m:context
+              m:set groundcover
+                m:context
+                  m:set source
+                    data
+                      local
+                  m:set path
+                    data
+                      ../groundcover
+                  m:set directory_name
+                    data
+                      groundcover
