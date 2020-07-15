@@ -7,7 +7,7 @@ m:call runner.application
             core_lib_app
     m:set permissions
       m:context
-        m:set test
+        m:set core_test
           m:call data.array
             m:context
               m:call cgs.set_value
@@ -85,6 +85,15 @@ m:call runner.application
               m:call cgs.set_value
                 data
                   runner.print_character
+              m:call cgs.set_value
+                data
+                  state.set
+              m:call cgs.set_value
+                data
+                  state.get
+              m:call cgs.set_value
+                data
+                  state.get_all
     m:set tasks
       m:context
         m:set install
@@ -155,7 +164,7 @@ m:call runner.application
                   m:call data.hash_get
                     block
                       data
-                        test
+                        core_test
                       m:get permissions
                   m:call runner.run_from_file
                     data

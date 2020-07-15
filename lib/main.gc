@@ -56,5 +56,17 @@ m:context
   m:call runner.run_from_file
     data
       lib/ln/use_definition_scope.forest
+  m:call runner.print_character
+    data
+      .
+  m:call runner.run_from_file
+    data
+      lib/state/simple_state_management.gc
+  m:call runner.print_character
+    data
+      .
+  m:call runner.run_from_file
+    data
+      lib/state/getting_the_whole_state.gc
   m:call runner.print
     data

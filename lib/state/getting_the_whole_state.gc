@@ -1,0 +1,37 @@
+m:context
+  m:set function
+    m:later
+      m:context
+        m:call state.set
+          block
+            data
+              local.hash.value1
+            data
+              300
+  m:call state.set
+    block
+      data
+        local.hash
+      m:context
+        m:set value1
+          data
+            100
+        m:set value2
+          data
+            200
+  m:now_by_name function
+  m:call testing.assert
+    block
+      m:call state.get_all
+        data
+      m:context
+        m:set local
+          m:context
+            m:set hash
+              m:context
+                m:set value1
+                  data
+                    300
+                m:set value2
+                  data
+                    200
