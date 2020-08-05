@@ -1,0 +1,23 @@
+m:context
+  m:set file
+    m:context
+      m:set meta
+        m:context
+          m:set charset
+            data
+              utf-8
+      m:set body
+        m:context
+          m:set module_name_2
+            m:context
+              m:set header
+                m:context
+              m:set body
+                m:set fun1
+                  m:later
+                    m:log
+                      fun1 called
+                m:set fun2
+                  m:later
+                    m:log
+                      fun2 called

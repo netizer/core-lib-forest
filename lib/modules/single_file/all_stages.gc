@@ -1,8 +1,149 @@
-m:call cascade
-  data
-    macro
-  m:context
-    m:set template
-      m:call pattern
-        block
+m:context
+  m:call runner.reverse_order
+    m:call runner.application
+      m:context
+        m:set meta
           m:context
+            m:set name
+              data
+                test_app
+        m:set tasks
+          m:context
+            m:set install
+              m:later
+                m:context
+                  m:call runner.include_task_environment
+                    block
+                  m:set group
+                    m:call data.array_get
+                      block
+                        data
+                          1
+                        m:get command_parts
+                  m:set deps_function
+                    m:call data.hash_get
+                      block
+                        m:get group
+                        m:get dependencies
+                  m:set deps
+                    m:now_by_name deps_function
+                  m:call loops.each_key_value_by_name
+                    m:context
+                      m:set items
+                        m:get deps
+                      m:set function
+                        m:later
+                          m:context
+                            m:call runner.explode_args_selectively
+                              block
+                                block
+                                  data
+                                    key
+                                  data
+                                    dep_name
+                                block
+                                  data
+                                    value
+                                  data
+                                    dep_options
+                            m:call runner.resolve_dependency
+                              block
+                                m:get dep_name
+                                m:get dep_options
+                  m:call runner.print
+                    data
+                      Dependencies installed.
+            m:set run
+              m:later
+                m:context
+                  m:call runner.include_task_environment
+                    block
+                  m:set forest
+                    m:create_forest
+                      m:get lib
+                  m:call runner.run_implicit_module
+                    block
+                      m:get forest
+                      m:context
+                        m:call import
+                          data
+                             module_name_1
+                          m:context
+                            m:set_value fun1
+                        m:now_by_name fun1
+    m:set lib
+      m:context
+        m:call runner.reverse_order
+          m:call runner.library
+            m:context
+              m:set name
+                data
+                  undefined
+              m:set dependencies
+                m:context
+                  m:set library_name_1
+                    m:context
+                      m:set name
+                        library_name_1
+                      m:set store
+                        data
+                          vendor
+              m:set modules
+                m:get modules
+          m:set modules
+            m:context
+              m:set_value
+                m:context
+                  m:set file
+                    m:context
+                      m:set meta
+                        m:context
+                          m:set charset
+                            data
+                              utf-8
+                      m:set body
+                        m:context
+                          m:set module_name_1
+                            m:context
+                              m:set header
+                                m:context
+                                  m:set self.module_name_2
+                                    m:context
+                                      m:set_value fun1
+                                      m:set_value fun2
+                                  m:set deps.library_name_1.module_name_3
+                                    m:set_value fun4
+                              m:set body
+                                m:context
+                                  m:set fun3
+                                    m:later
+                                      m:now fun1
+                                        data
+                                      m:now fun2
+                                        data
+                                      m:now fun4
+                                        data
+              m:set_value
+                m:context
+                  m:set file
+                    m:context
+                      m:set meta
+                        m:context
+                          m:set charset
+                            data
+                              utf-8
+                      m:set body
+                        m:context
+                          m:set module_name_2
+                            m:context
+                              m:set header
+                                m:context
+                              m:set body
+                                m:set fun1
+                                  m:later
+                                    m:log
+                                      fun1 called
+                                m:set fun2
+                                  m:later
+                                    m:log
+                                      fun2 called
