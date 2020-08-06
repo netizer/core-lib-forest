@@ -1,0 +1,26 @@
+m:context
+  m:set file
+    m:context
+      m:set meta
+        m:context
+          m:set charset
+            data
+              utf-8
+      m:set body
+        m:context
+          m:set module_name_1
+            m:context
+              m:set header
+                m:context
+                  m:set self.module_name_2
+                    m:context
+                      m:set_value fun1
+                      m:set_value fun2
+              m:set body
+                m:context
+                  m:set fun3
+                    m:later
+                      m:now fun1
+                        data
+                      m:now fun2
+                        data

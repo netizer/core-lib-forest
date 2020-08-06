@@ -1,0 +1,73 @@
+m:call runner.application
+  m:context
+    m:set meta
+      m:context
+        m:set name
+          data
+            test_app
+    m:set tasks
+      m:context
+        m:set install
+          m:later
+            m:context
+              m:call runner.include_task_environment
+                block
+              m:set group
+                m:call data.array_get
+                  block
+                    data
+                      1
+                    m:get command_parts
+              m:set deps_function
+                m:call data.hash_get
+                  block
+                    m:get group
+                    m:get dependencies
+              m:set deps
+                m:now_by_name deps_function
+              m:call loops.each_key_value_by_name
+                m:context
+                  m:set items
+                    m:get deps
+                  m:set function
+                    m:later
+                      m:context
+                        m:call runner.explode_args_selectively
+                          block
+                            block
+                              data
+                                key
+                              data
+                                dep_name
+                            block
+                              data
+                                value
+                              data
+                                dep_options
+                        m:call runner.resolve_dependency
+                          block
+                            m:get dep_name
+                            m:get dep_options
+              m:call runner.print
+                data
+                  Dependencies installed.
+        m:set run
+          m:later
+            m:context
+              m:call runner.include_task_environment
+                block
+              m:set forest
+                m:create_forest
+                  m:call runner.load_all_dependencies
+                    data
+                      lib/*.gc
+              m:call runner.run_implicit_module
+                block
+                  m:get forest
+                  m:context
+                    m:call import
+                      data
+                         module_name_1
+                      m:context
+                        m:set_value fun1
+                    m:now_by_name fun1

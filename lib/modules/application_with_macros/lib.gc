@@ -1,0 +1,11 @@
+m:call runner.library
+  m:context
+    m:set name
+      data
+        undefined
+    m:set dependencies
+      m:context
+    m:set modules
+      m:call runner.read_all_files_from
+        data
+          lib/**/*.gc
