@@ -94,12 +94,35 @@ m:call runner.application
               m:call cgs.set_value
                 data
                   state.get_all
+              m:call cgs.set_value
+                data
+                  stages.with_stage
+              m:call cgs.set_value
+                data
+                  testing.reversed_context
+              m:call cgs.set_value
+                data
+                  stages.skip
+              m:call cgs.set_value
+                data
+                  format_call
+              m:call cgs.set_value
+                data
+                  context
+              m:call cgs.set_value
+                data
+                  private
+              m:call cgs.set_value
+                data
+                  testing.return_1
     m:set tasks
       m:context
         m:set install
           m:later
             m:context
               m:call runner.include_task_environment
+                block
+              m:call runner.load_library
                 block
               m:set group
                 m:call data.array_get

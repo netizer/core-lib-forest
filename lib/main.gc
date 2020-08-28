@@ -68,5 +68,23 @@ m:context
   m:call runner.run_from_file
     data
       lib/state/getting_the_whole_state.gc
+  m:call runner.print_character
+    data
+      .
+  m:call runner.run_from_file
+    data
+      lib/stages/macros_and_runtime.gc
+  m:call runner.print_character
+    data
+      .
+  m:call runner.run_from_file
+    data
+      lib/default/format_call.gc
+  m:call runner.print_character
+    data
+      .
+  m:call runner.run_from_file
+    data
+      lib/default/context.gc
   m:call runner.print
     data

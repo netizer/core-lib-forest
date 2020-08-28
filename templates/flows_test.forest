@@ -1,0 +1,16 @@
+call
+  data
+    stages.with_stage
+  block
+    data
+      runtime_stage_test
+    call
+      data
+        stages.with_stage
+      block
+        data
+          macro_stage
+        call
+          data
+            yield
+          data

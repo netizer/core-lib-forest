@@ -1,0 +1,37 @@
+m:call stages.with_stage
+  block
+    data
+      runtime_stage_run
+    m:call stages.with_stage
+      block
+        data
+          macro_stage
+        block
+          m:set testing
+            m:context
+              m:set return_1
+                m:call ln.later
+                  data
+                    2
+              m:set return_2
+                m:call ln.later
+                  data
+                    2
+          m:call testing.assert
+            block
+              data
+                1
+              m:call format_call
+                block
+                  data
+                    testing.return_1
+                  block
+          m:call testing.assert
+            block
+              data
+                2
+              m:call format_call
+                block
+                  data
+                    testing.return_2
+                  block
