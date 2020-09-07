@@ -96,7 +96,7 @@ m:call runner.application
                   state.get_all
               m:call cgs.set_value
                 data
-                  stages.with_stage
+                  stages.with_stages
               m:call cgs.set_value
                 data
                   testing.reversed_context

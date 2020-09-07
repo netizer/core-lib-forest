@@ -1,16 +1,13 @@
 call
   data
-    stages.with_stage
+    stages.with_stages
   block
-    data
-      runtime_stage_test
+    block
+      data
+        macro_stage
+      data
+        runtime_stage_test
     call
       data
-        stages.with_stage
-      block
-        data
-          macro_stage
-        call
-          data
-            yield
-          data
+        yield
+      data

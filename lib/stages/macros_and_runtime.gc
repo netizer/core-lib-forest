@@ -1,30 +1,29 @@
-m:call testing.assert
+m:call stages.with_stages
   block
-    data
-      2
-    m:call stages.with_stage
+    block
+      data
+        macro_stage
+      data
+        runtime_stage_run
+    m:call testing.assert
       block
         data
-          runtime_stage_run
-        m:call stages.with_stage
+          2
+        m:call data.hash_get
           block
             data
-              macro_stage
-            m:call data.hash_get
+              y
+            m:call testing.reversed_context
               block
-                data
-                  y
-                m:call testing.reversed_context
+                m:call cgs.set
                   block
-                    m:call cgs.set
-                      block
-                        data
-                          y
-                        data
-                          2
-                    m:call cgs.set
-                      block
-                        data
-                          y
-                        data
-                          1
+                    data
+                      y
+                    data
+                      2
+                m:call cgs.set
+                  block
+                    data
+                      y
+                    data
+                      1

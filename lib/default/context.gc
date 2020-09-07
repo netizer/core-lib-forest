@@ -1,26 +1,25 @@
-m:call stages.with_stage
+m:call stages.with_stages
   block
-    data
-      runtime_stage_run
-    m:call stages.with_stage
+    block
+      data
+        macro_stage
+      data
+        runtime_stage_run
+    m:call testing.assert
       block
         data
-          macro_stage
-        m:call testing.assert
+          1
+        m:call data.hash_get
           block
             data
-              1
-            m:call data.hash_get
+              x
+            m:call context
               block
-                data
-                  x
-                m:call context
+                m:set x
+                  m:get
+                    y
+                m:call private
                   block
-                    m:set x
-                      m:get
-                        y
-                    m:call private
-                      block
-                        m:set y
-                          data
-                            1
+                    m:set y
+                      data
+                        1
