@@ -1,8 +1,10 @@
 # Core Library for Forest language
 
-Forest is a programming language designed for being embedded in other (host) languages. core-lib-forest is its core library. Any core functionality that can be written in forest, and not in the host language, will, sooner or later, end up in core-lib-forest. Currently the most important parts are:
+Forest is a programming language designed for being embedded in other (host) languages. `core-lib-forest` is its core library. Any core functionality that can be written in Forest, and not in the host language, will, sooner or later, end up in core-lib-forest. Currently the most important parts are:
 - Tests - forest-rb doesn't have many tests. Most of them are here.
 - Templates - every file in Forest can be embedded in a template (also written in Forest). These templates are stored as part of core-lib-forest.
+
+For more info about Forest, check out https://github.com/netizer/forest-rb
 
 ## The structure of core-lib-forest
 
